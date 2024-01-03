@@ -1,0 +1,329 @@
+
+#include <stdio.h>
+#include<string.h>
+#include<stdlib.h>
+#define N 100
+struct lesson {
+	int id;
+	char name[100];
+	char quality[100];
+	int Total_credit_hours;
+	int Computer_based_hours;
+	int Credits;
+	char Commencement_ofemesters[100];
+	int least_Credits;
+};
+struct student{
+	int id;
+	char name[100];
+	int choose_num;
+	struct lesson le[1000];
+};
+struct lesson lesson_1[1000]; int num = 0;
+struct student stu[1000];
+int j=0;
+int  chose() {
+	int a;
+	printf("\t\t\t\t\t请输入您的操作（输入数字 例如 输入1 代表数字1后操作）：\n\f");
+	printf("\t\t\t\t\t\t\t\t");
+	scanf("%d", &a);
+	return a;
+
+}
+void  in_put() {
+	 int i = num; char s[100];
+	do {
+		
+		printf("\n\t\t\t\t\t请输入课程id\t");
+		scanf("%d", &lesson_1[i].id);
+		printf("\t\t\t\t\t请输入课程name\t");
+		scanf("%s",lesson_1[i].name);
+		printf("\t\t\t\t\t请输入课程quality（特性）\t");
+		scanf("%s", lesson_1[i].quality);
+		printf("\t\t\t\t\t请输入课程Total_credit_hours（总学时）\t");
+		scanf("%d", &lesson_1[i].Total_credit_hours);
+		printf("\t\t\t\t\t请输入课程Computer_based_hours（上机学时，若没有为0）\t");
+		scanf("%d", &lesson_1[i].Computer_based_hours);
+		printf("\t\t\t\t\t请输入课程 Credits（学分）\t");
+		scanf("%d",& lesson_1[i].Credits);
+		printf("\t\t\t\t\t请输入课程Commencement_ofemesters（开课学期）\t");
+		scanf("%s", lesson_1[i].Commencement_ofemesters);
+		printf("\t\t\t\t\t是否继续录入\n\t\t\t\t\t1.是\n\t\t\t\t\t0.否,返回主菜单\n");
+	
+		i++; num++;
+	} while (chose() == 1);
+
+	
+}
+void read() {
+FILE*fp1,*fp2;int i=0,j=0;
+//fp1=fopen("lesson_data","a+");
+//fp2=fopen("stu_data","a+");
+//if((fp1=fopen("lesson_data.txt","r"))==NULL||(fp2=fopen("stu_data.txt","r"))==NULL){
+//	printf("\t\t\t\t\t打开文件失败\n");
+//	exit(0);
+//}
+//
+//	/*fprintf(fp1,"序号 %d 名字 %s  特性 %s 总学时 %d 上机学时%d 学分%d 学期 %s",lesson_1[i].id,lesson_1[i].name,lesson_1[i].quality,lesson_1[i].Total_credit_hours,lesson_1[i].Computer_based_hours,lesson_1[i].Credits,lesson_1[i].Commencement_ofemesters);
+//	fprintf(fp2,"学号 %d 姓名 %s  选课数量 %d  选择课程信息 序号 %d 名字 %s  特性 %s 总学时 %d 上机学时%d 学分%d 学期 %s",stu[i].id,stu)
+//	*/
+//for(i=0;i<N;i++){fscanf(fp1,"序号:%d \n名字：%s\n 性质：%s\n总学时：%d\n 上机学时：%d \n学分：%d\n开学日期： %s",&lesson_1[i].id,lesson_1[i].name,lesson_1[1].quality,&lesson_1[i].Total_credit_hours,&lesson_1[i].Computer_based_hours,&lesson_1[i].Credits,lesson_1[i].Commencement_ofemesters);if(lesson_1[i].id!=0)num++; }
+//for(i=0;i<N;i++)fscanf(fp2,"%d %s %d",&stu[i].id,stu[i].name,&stu[i].choose_num);
+//for(i=0;i<N;i++){
+//	for(j=0;j<N;j++){
+//		fscanf(fp2,"%d %s %s %d %d %d %s",&stu[i].le[j].id,stu[i].le[j].name,stu[i].le[j].quality,&stu[i].le[j].Total_credit_hours,&stu[i].le[j].Computer_based_hours,&stu[i].le[j].Credits,stu[i].le[j].Commencement_ofemesters);
+//	}
+//}
+////printf("%s",lesson_1[0].name);
+//printf("\t\t\t\t\t\t\t文件系统加载成功\n");
+//fclose(fp1);
+//fclose(fp2);
+
+	for (i = 0; i < num; i++)
+	{
+		
+		printf("\t\t\t\t\t第%d门课程id\t",i+1);
+		printf("%d\n", lesson_1[i].id);
+		printf("\t\t\t\t\t第%d门课程name\t",i+1);
+		printf("%s\n", lesson_1[i].name);
+		printf("\t\t\t\t\t第%d门课程quality（特性）\t",i+1);
+		printf("%s\n", lesson_1[i].quality);
+		printf("\t\t\t\t\t第%d门课程Total_credit_hours（总学时）\t",i+1);
+		printf("%d\n", lesson_1[i].Total_credit_hours);
+		printf("\t\t\t\t\t第%d门课程Computer_based_hours（上机学时，若没有为0）\t",i+1);
+		printf("%d\n", lesson_1[i].Computer_based_hours);
+		printf("\t\t\t\t\t第%d门课程 Credits（学分）\t",i+1);
+		printf("%d\n", lesson_1[i].Credits);
+		printf("\t\t\t\t\t第%d门课程Commencement_ofemesters（开课学期）\t",i+1);
+		printf("%s\n", lesson_1[i].Commencement_ofemesters);
+	}
+
+}
+void inquire(){
+	int k =0,t=0;int i=0;char c[100];
+//	printf("\t\t\t\t\t查询方式\n");
+//	printf("\t\t\t\t\t1.按学分查询\n");
+//	printf("\t\t\t\t\t2按课程性质查询\n.");
+	do{
+
+		printf("\t\t\t\t\t查询方式\n");
+		printf("\t\t\t\t\t1.按学分查询\n");
+		printf("\t\t\t\t\t2按课程性质查询\n.");
+		k=chose();
+	if(k==1)
+	{
+
+	printf("\t\t\t\t\t请输入该课程的学分\t");
+	scanf("%d",&t);
+	for (i = 0; i < num; i++)
+	{	
+		if(lesson_1[i].Credits==t){
+		printf("\t\t\t\t\t课程id\t");
+		printf("%d\n", lesson_1[i].id);
+		printf("\t\t\t\t\t课程name\t");
+		printf("%s\n", lesson_1[i].name);
+		printf("\t\t\t\t\t课程quality（特性）\t");
+		printf("%s\n", lesson_1[i].quality);
+		printf("\t\t\t\t\t课程Total_credit_hours（总学时）\t");
+		printf("%d\n", lesson_1[i].Total_credit_hours);
+		printf("\t\t\t\t\t课程Computer_based_hours（上机学时，若没有为0）\t");
+		printf("%d\n", lesson_1[i].Computer_based_hours);
+		printf("\t\t\t\t\t课程 Credits（学分）\t");
+		printf("%d\n", lesson_1[i].Credits);
+		printf("\t\t\t\t\t课程Commencement_ofemesters（开课学期）\t");
+		printf("%s\n", lesson_1[i].Commencement_ofemesters);}
+	}
+	}
+
+		if(k==2)
+		{
+		printf("\t\t\t\t\t请输入该课程的性质\t（如必修课 公共课 选修课）");
+		scanf("%s",c);
+			for (i = 0; i < num; i++)
+			{
+			if(strcmp(lesson_1[i].quality,c)==0){
+			printf("\t\t\t\t\t课程id\t");
+			printf("%d\n", lesson_1[i].id);
+			printf("\t\t\t\t\t课程name\t");
+			printf("%s\n", lesson_1[i].name);
+			printf("\t\t\t\t\t课程quality（特性）\t");
+			printf("%s\n", lesson_1[i].quality);
+			printf("\t\t\t\t\t课程Total_credit_hours（总学时）\t");
+			printf("%d\n", lesson_1[i].Total_credit_hours);
+			printf("\t\t\t\t\t课程Computer_based_hours（上机学时，若没有为0）\t");
+			printf("%d\n", lesson_1[i].Computer_based_hours);
+			printf("\t\t\t\t\t课程 Credits（学分）\t");
+			printf("%d\n", lesson_1[i].Credits);
+			printf("\t\t\t\t\t课程Commencement_ofemesters（开课学期）\t");
+			printf("%s\n", lesson_1[i].Commencement_ofemesters);}
+		   }
+		}printf("\t\t\t\t\t是否继续查询\n\t\t\t\t\t1.是\n\t\t\t\t\t0.否,返回主菜单\n");
+}while(chose()==1);
+	
+	}
+void print_mune1() {
+	printf("\t\t\t\t\t\t\t学生选修课程系统\t\n\n\n\n\n");
+	printf("\t\t\t\t\t\t\t1. 课程信息录入\n\n\n");
+	printf("\t\t\t\t\t\t\t2. 课程信息浏览\n\n\n");
+	printf("\t\t\t\t\t\t\t3. 课程信息查询\n\n\n");
+	printf("\t\t\t\t\t\t\t4. 课程信息修改\n\n\n");
+	printf("\t\t\t\t\t\t\t5. 学生选修课程\n\n\n");
+	printf("\t\t\t\t\t\t\t0. 退出\n\n\n\n\n");
+}
+void change(){
+	int id,i;
+	printf("\t\t\t\t\t请输入要修改课程的id\t");
+	scanf("%d",&id);
+	do {
+		
+		for( i=0;i<num;i++){
+			if(lesson_1[i].id==id){
+		printf("\n\t\t\t\t\t请输入改后课程id\t");
+		scanf("%d", &lesson_1[i].id);
+		printf("\t\t\t\t\t请输入改后课程name\t");
+		scanf("%s",lesson_1[i].name);
+		printf("\t\t\t\t\t请输入改后课程quality（特性）\t");
+		scanf("%s", lesson_1[i].quality);
+		printf("\t\t\t\t\t请输入改后课程Total_credit_hours（总学时）\t");
+		scanf("%d", &lesson_1[i].Total_credit_hours);
+		printf("\t\t\t\t\t请输入改后课程Computer_based_hours（上机学时，若没有为0）\t");
+		scanf("%d", &lesson_1[i].Computer_based_hours);
+		printf("\t\t\t\t\t请输入改后课程 Credits（学分）\t");
+		scanf("%d",& lesson_1[i].Credits);
+		printf("\t\t\t\t\t请输入改后课程Commencement_ofemesters（开课学期）\t");
+		scanf("%s", lesson_1[i].Commencement_ofemesters);
+		}
+	}
+		printf("\t\t\t\t\t是否继续修改\n\t\t\t\t\t1.是\n\t\t\t\t\t0.否,返回主菜单\n");
+	} while (chose() == 1);
+	printf("\t\t\t\t\t已回到主菜单");
+}
+void major(){
+	int n,i,t=0,sum=0,k,j=0;
+	do
+	{	printf("\t\t\t\t\t请输入学号\t");
+		scanf("%d",&stu[j].id);
+		printf("\t\t\t\t\t请输入名字\t");
+		scanf("%s",stu[j].name);
+		//printf("\t\t\t\t\t请输入选课数量\t");
+		//scanf("%d",&stu[j].choose_num);
+		read();
+		printf("\t\t\t\t\t输入想选择课程,输入一共要选的课程数量 n，和想选课程的第x位置\n");
+		printf("\t\t\t\t\t例如\t3\n\t\t\t\t\t\t1 2 3\n");
+		printf("\t\t\t\t\t请输入： n   ");
+		scanf("%d",&n);
+		stu[j].choose_num=n;
+		for(i=0;i<n;i++){
+			printf("\t\t\t\t\t请输入第%d课程序号\n",i+1);
+			printf("\t\t\t\t\t");
+			scanf("%d",&t);
+			stu[j].le[i]=lesson_1[t-1];
+			/*stu[j].le[i].id=lesson_1[t-1].id;
+			stu[j].le[i].Computer_based_hours=lesson_1[t-1].Computer_based_hours;
+			stu[j].le[i].Credits=lesson_1[t-1].Credits;
+			strcpy(stu[j].le[i].name,lesson_1[t-1].name);
+			strcpy(stu[j].le[i].quality,lesson_1[t-1].quality);
+			strcpy(stu[j].le[i].Commencement_ofemesters,lesson_1[t-1].Commencement_ofemesters);
+			sum+=lesson_1[t-1].Credits;*/
+		}
+		sum+=lesson_1[t-1].Credits;
+		if(sum<60)printf("\t\t\t\t\t你的总学分少于60\n");
+		printf("\t\t\t\t\t是否重新选课\n\t\t\t\t\t1.是\n\t\t\t\t\t0.否,返回主菜单\n");
+	}while(chose()==1);
+	j++;
+	printf("\t\t\t\t\t已回到主菜单");
+}
+int key(){
+	char k[100]="key";
+	char s[100];
+	printf("\t\t\t\t\t该功能需要管理员密码\n");
+	printf("\t\t\t\t\t请输入密码：（退出请输入0）\n");
+	printf("\t\t\t\t\t");
+	scanf("%s",s);
+	if(strcmp(s,k)==0)return 1;
+	return 0;
+
+}
+void save(){
+FILE*fp1,*fp2;int i=0,j=0;
+//fp1=fopen("lesson_data","a+");
+//fp2=fopen("stu_data","a+");
+if((fp1=fopen("lesson_data.txt","wb"))==NULL||(fp2=fopen("stu_data.txt","wb"))==NULL){
+	printf("\t\t\t\t\t打开文件失败\n");
+	exit(0);
+}
+
+for(i=0;i<N;i++)if(strcmp(lesson_1[i].name,"\0"))fprintf(fp1,"序号:%-10d \n名字：%-10s\n 总学时：%-10d\n性质：%-10s\n 上机学时：%-10d \n学分：%-10d\n开学日期： %-10s\n",lesson_1[i].id,lesson_1[i].name,lesson_1[i].Total_credit_hours,lesson_1[i].quality,lesson_1[i].Computer_based_hours,lesson_1[i].Credits,lesson_1[i].Commencement_ofemesters);
+for(i=0;i<N;i++)if(strcmp(stu[i].name,"\0"))fprintf(fp2,"%d %s %d",stu[i].id,stu[i].name,stu[i].choose_num);
+for(i=0;i<N;i++){
+	for(j=0;j<N;j++){
+		if(strcmp(stu[i].name,"\0")&&strcmp(stu[i].le[j].name,"0"))
+		fprintf(fp2,"%d %s %s %d %d %d %s",stu[i].le[j].id,stu[i].le[j].name,stu[i].le[j].quality,stu[i].le[j].Total_credit_hours,stu[i].le[j].Computer_based_hours,stu[i].le[j].Credits,stu[i].le[j].Commencement_ofemesters);
+	}
+}
+
+
+printf("\t\t\t\t\t\t\t信息已保存\n");
+fclose(fp1);
+fclose(fp2);
+}
+void load(){
+FILE*fp1,*fp2;int i=0,j=0;
+//fp1=fopen("lesson_data","a+");
+//fp2=fopen("stu_data","a+");
+if((fp1=fopen("lesson_data.txt","r"))==NULL||(fp2=fopen("stu_data.txt","r"))==NULL){
+	printf("\t\t\t\t\t打开文件失败\n");
+	exit(0);
+}
+
+	/*fprintf(fp1,"序号 %d 名字 %s  特性 %s 总学时 %d 上机学时%d 学分%d 学期 %s",lesson_1[i].id,lesson_1[i].name,lesson_1[i].quality,lesson_1[i].Total_credit_hours,lesson_1[i].Computer_based_hours,lesson_1[i].Credits,lesson_1[i].Commencement_ofemesters);
+	fprintf(fp2,"学号 %d 姓名 %s  选课数量 %d  选择课程信息 序号 %d 名字 %s  特性 %s 总学时 %d 上机学时%d 学分%d 学期 %s",stu[i].id,stu)
+	*/
+for(i=0;i<N;i++){/*if(strcmp(lesson_1[i].name,"\0"))*/fscanf(fp1,"序号:%d \n名字：%s\n 总学时：%d\n性质：%s\n 上机学时：%d \n学分：%d\n开学日期： %s\n",&lesson_1[i].id,lesson_1[i].name,&lesson_1[i].Total_credit_hours,lesson_1[i].quality,&lesson_1[i].Computer_based_hours,&lesson_1[i].Credits,lesson_1[i].Commencement_ofemesters);if(lesson_1[i].id!=0)num++;}
+for(i=0;i<N;i++)/*if(strcmp(stu[i].name,"\0"))*/fscanf(fp2,"%d %s %d",&stu[i].id,stu[i].name,&stu[i].choose_num);
+for(i=0;i<N;i++){
+	for(j=0;j<N;j++){
+	/*	if(strcmp(stu[i].name,"\0"))*/fscanf(fp2,"%d %s %s %d %d %d %s",&stu[i].le[j].id,stu[i].le[j].name,stu[i].le[j].quality,&stu[i].le[j].Total_credit_hours,&stu[i].le[j].Computer_based_hours,&stu[i].le[j].Credits,stu[i].le[j].Commencement_ofemesters);
+	}
+}
+//printf("%s",lesson_1[0].name);
+printf("\t\t\t\t\t\t\t文件系统加载成功\n");
+fclose(fp1);
+fclose(fp2);
+}
+
+
+int main()
+{int p;
+	load();
+	do{
+	print_mune1();
+	p=chose();
+	if (p == 1 && key()) //1. 课程信息录入
+	{ 
+		in_put(); 
+	}
+	
+	if (p== 2) //2. 课程信息浏览
+	{
+		read(); 
+	}
+	
+	if(p==3){//3. 课程信息查询
+	inquire();
+	}
+	
+	if(p==4&&key()){//4. 课程信息修改
+	change();
+	}
+	if(p==5){//5. 学生选修课程
+	major();
+	}
+	
+	if(p==0){//0. 退出
+	break;
+	}
+}while(1);
+	save();
+}
+
